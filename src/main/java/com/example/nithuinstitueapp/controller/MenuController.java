@@ -1,15 +1,18 @@
 package com.example.nithuinstitueapp.controller;
 
 import com.example.nithuinstitueapp.common.Common;
+import com.example.nithuinstitueapp.common.DBController;
 import com.example.nithuinstitueapp.model.Student;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -45,40 +48,6 @@ public class MenuController {
         String DEFAULT_FXML = "/com/example/nithuinstitueapp/view/dashboard.fxml";
         Common.loadFXML(DEFAULT_FXML ,loadPane);
     }
-    @FXML
-    public void navigateEnrolment() {
-        String DEFAULT_FXML = "/com/example/nithuinstitueapp/view/enrolment.fxml";
-        Common.loadFXML(DEFAULT_FXML ,loadPane);
-    }
-    @FXML
-    public void navigateAttendance() {
-        String DEFAULT_FXML = "/com/example/nithuinstitueapp/view/attendance.fxml";
-        Common.loadFXML(DEFAULT_FXML ,loadPane);
-    }
-    @FXML
-    public void navigateNewClass() {
-        String DEFAULT_FXML = "/com/example/nithuinstitueapp/view/newClass.fxml";
-        Common.loadFXML(DEFAULT_FXML ,loadPane);    }
-    @FXML
-    public void navigateNewExam() {
-        String DEFAULT_FXML = "/com/example/nithuinstitueapp/view/newExam.fxml";
-        Common.loadFXML(DEFAULT_FXML ,loadPane);
-    }
-    @FXML
-    public void navigateNewPayment() {
-        String DEFAULT_FXML = "/com/example/nithuinstitueapp/view/newPayment.fxml";
-        Common.loadFXML(DEFAULT_FXML ,loadPane);
-    }
-    @FXML
-    public void navigateNewSubject() {
-        String DEFAULT_FXML = "/com/example/nithuinstitueapp/view/newSubject.fxml";
-        Common.loadFXML(DEFAULT_FXML ,loadPane);
-    }
-    @FXML
-    public void navigateNewTeacher() {
-        String DEFAULT_FXML = "/com/example/nithuinstitueapp/view/newTeacher.fxml";
-        Common.loadFXML(DEFAULT_FXML ,loadPane);
-    }
 
     //profile controller
     @FXML
@@ -89,12 +58,19 @@ public class MenuController {
     @FXML
     public void navigateProfile() {
         String DEFAULT_FXML = "/com/example/nithuinstitueapp/view/profile.fxml";
-        Common.loadFXML(DEFAULT_FXML ,loadPane);
-    }
-    @FXML
-    public void navigateSubjectTeacher() {
-        String DEFAULT_FXML = "/com/example/nithuinstitueapp/view/subjectTeacher.fxml";
-        Common.loadFXML(DEFAULT_FXML ,loadPane);
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(DEFAULT_FXML));
+            Parent content = loader.load();
+
+            ProfileController controller = loader.getController();
+            controller.setMenuController(this);
+
+            setContent(content);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     public void navigateStudentDetails(){
@@ -108,11 +84,7 @@ public class MenuController {
             StudentDetailsController controller = loader.getController();
             controller.setMenuController(this);
 
-            loadPane.getChildren().setAll(content);
-            AnchorPane.setTopAnchor(content, 0.0);
-            AnchorPane.setRightAnchor(content, 0.0);
-            AnchorPane.setBottomAnchor(content, 0.0);
-            AnchorPane.setLeftAnchor(content, 0.0);
+            setContent(content);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -130,14 +102,40 @@ public class MenuController {
             controller.setStudent(student);
             controller.setMenuController(this);
 
-            loadPane.getChildren().setAll(content);
-            AnchorPane.setTopAnchor(content, 0.0);
-            AnchorPane.setRightAnchor(content, 0.0);
-            AnchorPane.setBottomAnchor(content, 0.0);
-            AnchorPane.setLeftAnchor(content, 0.0);
+            setContent(content);
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void setContent(Parent content) {
+        loadPane.getChildren().setAll(content);
+        AnchorPane.setTopAnchor(content, 0.0);
+        AnchorPane.setRightAnchor(content, 0.0);
+        AnchorPane.setBottomAnchor(content, 0.0);
+        AnchorPane.setLeftAnchor(content, 0.0);
+    }
+
+    @FXML
+    private void handleLogout() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout Confirmation");
+        alert.setHeaderText("Are you sure you want to log out?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                DBController.logOut();
+                Parent root = FXMLLoader.load(getClass().getResource("/com/example/nithuinstitueapp/view/login.fxml"));
+                Stage stage = (Stage) loadPane.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setResizable(false);
+                stage.centerOnScreen();
+                stage.setTitle("Nithu Institute - Login");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -152,8 +150,4 @@ public class MenuController {
             Platform.exit();
         }
     }
-
-
-
-
 }

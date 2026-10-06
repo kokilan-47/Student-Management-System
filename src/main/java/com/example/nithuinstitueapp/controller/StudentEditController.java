@@ -7,6 +7,7 @@ import com.example.nithuinstitueapp.service.StudentService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.sql.Date;
+import java.util.Optional;
 
 public class StudentEditController {
     private MenuController menuController;
@@ -108,6 +109,11 @@ public class StudentEditController {
             return false;
         }
 
+        if (gradeStudent.getValue() == null) {
+            NotificationController.errorNotification("Check Input Data", "Please select grade");
+            return false;
+        }
+
         if (genderGroup.getSelectedToggle() == null) {
             NotificationController.errorNotification("Check Input Data", "Please select gender");
             return false;
@@ -154,16 +160,25 @@ public class StudentEditController {
     }
     @FXML
     private void deleteStudent(){
-        if(StudentService.deleteStudent(studentID)){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Confirmation");
+        alert.setHeaderText("Delete " + student.getName() + " and their parent details?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK && StudentService.deleteStudent(studentID)) {
             menuController.navigateStudentDetails();
         }
+    }
+    @FXML
+    private void goBack(){
+        menuController.navigateStudentDetails();
     }
     private String getSelectedGender() {
         RadioButton selected = (RadioButton) genderGroup.getSelectedToggle();
         return selected != null ? selected.getText() : "Other"; // Default to "Other"
     }
     private boolean checkUser(){
-        if ((DBController.getLogInUserRole().equals("Staff"))){
+        if (!DBController.isAdmin()){
             updateBtn.setDisable(true);
             deleteBtn.setDisable(true);
             return true;

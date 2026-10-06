@@ -24,17 +24,13 @@ public class LoginController {
     @FXML
     private void handleLogin() {
 
-        String username = usernameField.getText();
+        String username = usernameField.getText().trim();
         String password = passwordField.getText();
         if (username.isEmpty() || password.isEmpty()) {
-            NotificationController.errorNotification("Check", "Enter Both username and password");
             NotificationController.errorNotification("Check", "Enter Both username and password");
         }
         else if (authenticate(username, password)){
             navigateMenu();
-        }
-        else {
-            NotificationController.errorNotification("Unknown", "Login attempted for: " + username);
         }
     }
 
@@ -59,8 +55,9 @@ public class LoginController {
             menuController.setUsername(DBController.getLogInUsername());
             Stage stage = (Stage) usernameField.getScene().getWindow();
             stage.setScene(new Scene(root));
+            stage.setResizable(true);
             stage.centerOnScreen();
-            stage.setTitle("Home");
+            stage.setTitle("Nithu Institute");
 
             NotificationController.informNotification("Success", "Welcome " + DBController.getLogInUsername());
 

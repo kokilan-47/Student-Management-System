@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="680.0" prefWidth="1100.0" stylesheets="@../css/style.css"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.nithuinstitueapp.controller.MenuController">
+    <left>
+        <VBox prefWidth="220.0" styleClass="sidebar">
+            <Label styleClass="sidebar-title" text="Nithu Institute"/>
+            <Button fx:id="usernameBTN" onAction="#navigateProfile" styleClass="sidebar-user" text="Welcome !"/>
+            <Button maxWidth="Infinity" onAction="#navigateDashboard" styleClass="nav-button" text="Dashboard"/>
+            <Button maxWidth="Infinity" onAction="#navigateNewStudent" styleClass="nav-button" text="New Student"/>
+            <Button maxWidth="Infinity" onAction="#navigateStudentDetails" styleClass="nav-button" text="Student Details"/>
+            <Button maxWidth="Infinity" onAction="#navigateProfile" styleClass="nav-button" text="Profile"/>
+            <Region VBox.vgrow="ALWAYS"/>
+            <Button maxWidth="Infinity" onAction="#handleLogout" styleClass="nav-button" text="Logout"/>
+            <Button maxWidth="Infinity" onAction="#handleExit" styleClass="nav-button" text="Exit"/>
+        </VBox>
+    </left>
+    <center>
+        <AnchorPane fx:id="loadPane" styleClass="content-pane"/>
+    </center>
+</BorderPane>

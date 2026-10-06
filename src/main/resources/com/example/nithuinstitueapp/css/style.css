@@ -1,0 +1,124 @@
+.root {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13px;
+    -primary: #1e4d8c;
+    -primary-dark: #163a6b;
+    -accent: #f4a300;
+    -surface: #f4f6fa;
+}
+
+/* ---------- Login ---------- */
+.login-pane {
+    -fx-background-color: linear-gradient(to bottom right, #1e4d8c, #2f7dd1);
+}
+.login-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 32;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 18, 0, 0, 4);
+}
+.brand-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -primary;
+}
+.brand-subtitle {
+    -fx-text-fill: #6b7280;
+}
+
+/* ---------- Side menu ---------- */
+.sidebar {
+    -fx-background-color: -primary;
+    -fx-padding: 20 0 20 0;
+}
+.sidebar-title {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 20 10 20;
+}
+.sidebar-user {
+    -fx-background-color: transparent;
+    -fx-text-fill: #cfe0f7;
+    -fx-padding: 0 20 16 20;
+    -fx-cursor: hand;
+}
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-alignment: center-left;
+    -fx-padding: 10 20 10 24;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+}
+.nav-button:hover {
+    -fx-background-color: -primary-dark;
+    -fx-border-color: transparent transparent transparent -accent;
+    -fx-border-width: 0 0 0 4;
+}
+.content-pane {
+    -fx-background-color: -surface;
+}
+
+/* ---------- Content ---------- */
+.page-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1f2937;
+}
+.section-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -primary;
+}
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 10, 0, 0, 2);
+}
+.stat-value {
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -primary;
+}
+.stat-label {
+    -fx-text-fill: #6b7280;
+}
+
+.text-field, .password-field, .combo-box, .date-picker {
+    -fx-pref-height: 32px;
+}
+
+.button {
+    -fx-cursor: hand;
+    -fx-pref-height: 32px;
+    -fx-padding: 0 18 0 18;
+    -fx-background-radius: 6;
+}
+.btn-primary {
+    -fx-background-color: -primary;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.btn-primary:hover {
+    -fx-background-color: -primary-dark;
+}
+.btn-danger {
+    -fx-background-color: #c0392b;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.btn-danger:hover {
+    -fx-background-color: #a5301f;
+}
+.btn-secondary {
+    -fx-background-color: #e5e7eb;
+    -fx-text-fill: #1f2937;
+}
+
+.hint {
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 12px;
+}

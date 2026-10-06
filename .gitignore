@@ -1,0 +1,7 @@
+target/
+.idea/
+*.iml
+.vscode/
+.DS_Store
+# Local connection overrides (may contain real passwords)
+/db.properties

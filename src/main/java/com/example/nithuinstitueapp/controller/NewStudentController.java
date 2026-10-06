@@ -26,8 +26,6 @@ public class NewStudentController {
 
     @FXML private Button addButton;
     @FXML private Button clearButton;
-    @FXML private Button enrollSubjectButton;
-    @FXML private Button viewStudentButton;
 
     private ToggleGroup genderGroup;
 
@@ -68,9 +66,24 @@ public class NewStudentController {
                     relationParent.getValue()
             );
 
-            StudentService.registerStudent(student);
+            if (StudentService.registerStudent(student)) {
+                clearForm();
             }
+        }
 
+    }
+
+    @FXML private void clearForm() {
+        nameStudent.clear();
+        addressStudent.clear();
+        gradeStudent.setValue(null);
+        otherRadio.setSelected(true);
+        dobStudent.setValue(null);
+        contactStudent.clear();
+        emailStudent.clear();
+        nameParent.clear();
+        contactParent.clear();
+        relationParent.setValue(null);
     }
 
         private boolean validateInputs () {
@@ -81,6 +94,11 @@ public class NewStudentController {
 
             if (dobStudent.getValue() == null) {
                 NotificationController.errorNotification("Check Input Data", "Date of birth is required");
+                return false;
+            }
+
+            if (gradeStudent.getValue() == null) {
+                NotificationController.errorNotification("Check Input Data", "Please select grade");
                 return false;
             }
 
