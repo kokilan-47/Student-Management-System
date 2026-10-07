@@ -7,7 +7,7 @@
     <groupId>com.example</groupId>
     <artifactId>nithu-institute-app</artifactId>
     <version>1.0.0</version>
-    <name>Nithu Institute App</name>
+    <name>Student Management System</name>
 
     <properties>
         <maven.compiler.release>17</maven.compiler.release>

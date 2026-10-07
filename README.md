@@ -1,6 +1,6 @@
-# Nithu Institute – Student Management System
+# Student Management System
 
-A JavaFX desktop application for managing students at Nithu Institute. Staff can register students together with their parent or guardian, search and browse records, and update or remove them. Access is role-based (Admin / Staff), and the data is stored in MySQL.
+A JavaFX desktop application for managing students at an institute. Staff can register students together with their parent or guardian, search and browse records, and update or remove them. Access is role-based (Admin / Staff), and the data is stored in MySQL.
 
 ![Student details](docs/screenshots/04-student-details.png)
 
@@ -91,3 +91,8 @@ On Windows, use `mvnw.cmd javafx:run`. To run the tests, use `./mvnw test`.
 ## Roadmap
 
 Planned modules that are not built yet: subject enrolment, attendance, classes, exams, payments and teacher management.
+
+## How this project was built (AI assistance)
+
+I built this project with the help of AI coding assistants. I am still learning, and I include this note so the repository is honest about how it was made.
+
